@@ -61,4 +61,40 @@ RSpec.describe House do
       expect(@house.details).to eq({"price" => 400000, "address" => "123 sugar lane"})
     end
   end
+
+  describe "Iteration 4" do
+    it "has a price_per_square_foot_method" do
+      @house.add_room(@room_1)
+      @house.add_room(@room_2)
+      @house.add_room(@room_3)
+      @house.add_room(@room_4)
+      
+      expect(@house.price_per_square_foot).to eq(210.53)
+    end
+
+    it "has a rooms_sorted_by_area method" do
+      @house.add_room(@room_1)
+      @house.add_room(@room_2)
+      @house.add_room(@room_3)
+      @house.add_room(@room_4)
+      
+      expect(@house.rooms_sorted_by_area).to eq([@room_4, @room_3, @room_2, @room_1])
+    end
+
+    it "has a rooms_by_category method" do
+      @house.add_room(@room_1)
+      @house.add_room(@room_2)
+      @house.add_room(@room_3)
+      @house.add_room(@room_4)
+      
+      expected = { 
+                  :bedroom => [@room_1, @room_2],
+                  :living_room => [@room_3],
+                  :basement => [@room_4]
+                }
+
+      expect(@house.rooms_by_category).to eq(expected)
+    end
+
+  end
 end
